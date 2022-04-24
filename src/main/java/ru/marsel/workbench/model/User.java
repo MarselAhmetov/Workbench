@@ -20,6 +20,5 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User extends LongIdBaseEntity {
     String email;
-    String username;
     String password;
 }
