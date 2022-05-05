@@ -21,4 +21,5 @@ import lombok.experimental.FieldDefaults;
 public class User extends LongIdBaseEntity {
     String email;
     String password;
+    Role role;
 }
