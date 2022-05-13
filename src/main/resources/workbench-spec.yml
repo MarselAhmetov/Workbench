@@ -25,14 +25,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignInRequest'
+              $ref: '#./definitions/Models.yml#/SignInRequest'
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignInResponse'
+                $ref: '#./definitions/Models.yml#/SignInResponse'
 
   /api/auth/sign-up:
     post:
@@ -45,61 +45,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignUpRequest'
+              $ref: '#./definitions/Models.yml#/SignUpRequest'
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignUpResponse'
-components:
-  schemas:
-    User:
-      type: object
-      properties:
-        username:
-          type: string
-        email:
-          type: string
-
-    SignInResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        token:
-          type: string
-
-    SignUpResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        token:
-          type: string
-
-    SignInRequest:
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-
-    SignUpRequest:
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-
-    ProjectAttributeType:
-      type: string
-      enum:
-        - INTEGRATION
-        - MESSENGER_BOT
-        - BACKEND
-        - FRONTEND
-        - MOBILE_APP
+                $ref: './definitions/Models.yml#/SignUpResponse'
