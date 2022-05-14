@@ -1,0 +1,18 @@
+<p-card>
+  <ng-template pTemplate="header">
+    <div class="mx-4 pt-4 flex flex-row justify-between">
+      <h2>Супер проект</h2>
+      <span>...</span>
+    </div>
+  </ng-template>
+  <div class="flex flex-col justify-between">
+    <span>Current step: User story</span>
+    <span>Next step: Use cases</span>
+    <span>&nbsp;</span>
+
+    <div class="flex flex-row justify-between">
+      <span>Deadline: 1 day ago</span>
+      <p-knob [(ngModel)]="progress" valueColor="Red" [readonly]="true"></p-knob>
+    </div>
+  </div>
+</p-card>

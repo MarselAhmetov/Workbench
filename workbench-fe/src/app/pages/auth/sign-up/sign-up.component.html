@@ -1,0 +1,39 @@
+<div class="flex flex-col justify-center h-full w-full">
+  <div class="flex flex-row justify-center">
+    <s-logo></s-logo>
+  </div>
+
+  <div class="flex flex-row justify-center mt-24 mx-24">
+    <p-card>
+      <div class="flex flex-col">
+        <div class="mx-4">
+          <p>Let’s create your account</p>
+
+          <div class="my-4">
+            <label for="email" class="block">Электронная почта</label>
+            <input id="email" type="email" pInputText [(ngModel)]="email"/>
+          </div>
+
+          <div class="my-4">
+            <label for="password" class="block">Пароль</label>
+            <input id="password" type="password" pInputText [(ngModel)]="password"/>
+          </div>
+
+          <div class="my-4">
+            <label for="confirmPassword" class="block">Пароль</label>
+            <input id="confirmPassword" type="password" pInputText [(ngModel)]="confirmPassword"/>
+          </div>
+
+          <div class="my-4">
+            <p-checkbox [(ngModel)]="subscribe" [binary]="true" inputId="subscribe"></p-checkbox>
+            <label for="subscribe">Подписаться на рассылку</label>
+          </div>
+
+          <div class="my-4">
+            <s-button label="Войти"></s-button>
+          </div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="flex flex-col justify-center h-full w-full">
+  <div class="flex flex-row justify-center">
+    <s-logo></s-logo>
+  </div>
+
+  <div class="flex flex-row justify-center mt-24 mx-24">
+    <p-card>
+      <div class="flex flex-row basis-1/2">
+        <div class="flex flex-col justify-center">
+          <div class="mx-8">
+            <p class="header my-4">Get started by logging in to your account.</p>
+
+
+            <div class="my-4">
+              <label for="email" class="block">Электронная почта</label>
+              <input id="email" type="email" pInputText [(ngModel)]="email" />
+            </div>
+
+            <div class="my-4">
+              <label for="password" class="block">Пароль</label>
+              <input id="password" type="password" pInputText [(ngModel)]="password" />
+            </div>
+
+            <div class="my-4">
+              <p-checkbox [(ngModel)]="rememberMe" [binary]="true" inputId="rememberMe"></p-checkbox>
+              <label for="rememberMe">Запомнить меня</label>
+            </div>
+
+            <div class="my-4">
+              <s-button label="Войти"></s-button>
+            </div>
+          </div>
+        </div>
+        <div class="right-side flex flex-col">
+
+          <svg width="141" height="139" viewBox="0 0 141 139" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_18_51)">
+              <path
+                  d="M69.5 127.88C67.7625 127.88 66.025 127.475 64.5771 126.664C53.7467 120.756 34.6921 114.501 22.7613 112.938L21.0817 112.706C13.4946 111.779 7.23959 104.655 7.23959 96.9525V26.9892C7.23959 22.4138 9.03501 18.2438 12.3363 15.2321C15.6375 12.2204 19.9233 10.7725 24.4408 11.1779C37.1825 12.1625 56.4108 18.5333 67.2992 25.3675L68.6892 26.1783C69.0946 26.41 69.9633 26.41 70.3108 26.2363L71.2375 25.6571C82.1258 18.8229 101.354 12.3363 114.154 11.2358C114.27 11.2358 114.733 11.2358 114.849 11.2358C119.077 10.8304 123.42 12.3363 126.664 15.3479C129.965 18.3596 131.76 22.5296 131.76 27.105V97.0104C131.76 104.771 125.505 111.837 117.86 112.764L115.949 112.995C104.018 114.559 84.9058 120.872 74.3071 126.722C72.9171 127.533 71.2375 127.88 69.5 127.88ZM23.0508 19.8075C21.1975 19.8075 19.5179 20.4446 18.1858 21.6608C16.7379 22.9929 15.9271 24.9042 15.9271 26.9892V96.9525C15.9271 100.37 18.8808 103.671 22.1821 104.134L23.9196 104.366C36.9508 106.103 56.9321 112.648 68.5154 118.961C69.0367 119.193 69.7896 119.25 70.0792 119.135C81.6625 112.706 101.76 106.103 114.849 104.366L116.818 104.134C120.119 103.729 123.073 100.37 123.073 96.9525V27.0471C123.073 24.9042 122.262 23.0508 120.814 21.6608C119.308 20.3288 117.397 19.6917 115.254 19.8075C115.138 19.8075 114.675 19.8075 114.559 19.8075C103.497 20.7921 85.6588 26.7575 75.9288 32.8388L75.0021 33.4758C71.8167 35.445 67.2992 35.445 64.2296 33.5338L62.8396 32.7229C52.9358 26.6417 35.0975 20.7342 23.7458 19.8075C23.5142 19.8075 23.2825 19.8075 23.0508 19.8075Z"
+                  fill="white"/>
+              <path
+                  d="M69.5 123.015C67.1254 123.015 65.1562 121.046 65.1562 118.671V31.7962C65.1562 29.4217 67.1254 27.4525 69.5 27.4525C71.8746 27.4525 73.8438 29.4217 73.8438 31.7962V118.671C73.8438 121.104 71.8746 123.015 69.5 123.015Z"
+                  fill="white"/>
+              <path
+                  d="M44.8854 53.515H31.8542C29.4796 53.515 27.5104 51.5458 27.5104 49.1712C27.5104 46.7967 29.4796 44.8275 31.8542 44.8275H44.8854C47.26 44.8275 49.2292 46.7967 49.2292 49.1712C49.2292 51.5458 47.26 53.515 44.8854 53.515Z"
+                  fill="#FDCA40"/>
+              <path
+                  d="M49.2292 70.89H31.8542C29.4796 70.89 27.5104 68.9208 27.5104 66.5462C27.5104 64.1717 29.4796 62.2025 31.8542 62.2025H49.2292C51.6037 62.2025 53.5729 64.1717 53.5729 66.5462C53.5729 68.9208 51.6037 70.89 49.2292 70.89Z"
+                  fill="#F79824"/>
+            </g>
+            <defs>
+              <filter id="filter0_d_18_51" x="0" y="0" width="148" height="148"
+                      filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix"
+                               values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                               result="hardAlpha"/>
+                <feOffset dx="7" dy="7"/>
+                <feGaussianBlur stdDeviation="1"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_18_51"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_18_51"
+                         result="shape"/>
+              </filter>
+            </defs>
+          </svg>
+          <p>Learn new features - improve your professionality</p>
+          <p>Read more</p>
+        </div>
+
+      </div>
+    </p-card>
+  </div>
+</div>

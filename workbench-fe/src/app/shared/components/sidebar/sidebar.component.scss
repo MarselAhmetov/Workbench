@@ -1,0 +1,19 @@
+li {
+  margin: 2rem 0;
+
+  .active {
+    div {
+      background: #FAFAFA;
+    }
+
+    span {
+      color: #F79824;
+    }
+
+    svg {
+      path {
+      fill: #F79824;
+      }
+    }
+  }
+}

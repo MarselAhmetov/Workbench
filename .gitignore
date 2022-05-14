@@ -31,3 +31,29 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+workbench-fe/dist
+workbench-fe/tmp
+workbench-fe/out-tsc
+workbench-fe/bazel-out
+
+# Node
+workbench-fe/node_modules
+workbench-fe/npm-debug.log
+workbench-fe/yarn-error.log
+
+# Miscellaneous
+workbench-fe/.angular/cache
+.sass-cache/
+workbench-fe/connect.lock
+workbench-fe/coverage
+workbench-fe/libpeerconnection.log
+workbench-fe/testem.log
+workbench-fe/typings
+
+# System files
+.DS_Store
+Thumbs.db

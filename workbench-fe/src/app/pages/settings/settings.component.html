@@ -1,0 +1,60 @@
+<p-tabView>
+  <p-tabPanel header="Общие">
+    <div class="flex flex-row">
+      <p-card>
+        <ng-template pTemplate="header">
+          <div class="mx-4 pt-4 flex flex-row justify-between">
+            <h2>Подписка на рассылки</h2>
+          </div>
+        </ng-template>
+        <div class="flex flex-col">
+          <div>
+            <p-checkbox [(ngModel)]="subscribeSettings.serviceNews" [binary]="true"
+                        inputId="serviceNews"></p-checkbox>
+            <label for="serviceNews">Оповещать о новых возможностях сервиса</label>
+          </div>
+
+          <div>
+            <p-checkbox [(ngModel)]="subscribeSettings.projectNotification" [binary]="true"
+                        inputId="projectNotification"></p-checkbox>
+            <label for="projectNotification">Оповещать о изменениях в проекте</label>
+          </div>
+
+          <div>
+            <p-checkbox [(ngModel)]="subscribeSettings.deadlineNotifications" [binary]="true"
+                        inputId="deadlineNotifications"></p-checkbox>
+            <label for="deadlineNotifications">Присылать напоминания о дедлайнах</label>
+          </div>
+        </div>
+      </p-card>
+
+
+      <p-card>
+        <ng-template pTemplate="header">
+          <div class="mx-4 pt-4 flex flex-row justify-between">
+            <h2>Еще настройки</h2>
+          </div>
+        </ng-template>
+        <div class="flex flex-col">
+          <div>
+            <p-checkbox [(ngModel)]="subscribeSettings.serviceNews" [binary]="true"
+                        inputId="serviceNews"></p-checkbox>
+            <label for="serviceNews">Показывать прогресс на карточке проекта </label>
+          </div>
+
+          <div>
+            <p-checkbox [(ngModel)]="subscribeSettings.projectNotification" [binary]="true"
+                        inputId="projectNotification"></p-checkbox>
+            <label for="projectNotification">Показывать описание на карточке проекта</label>
+          </div>
+        </div>
+      </p-card>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Интеграции">
+    aha
+  </p-tabPanel>
+  <p-tabPanel header="Дополнительные">
+    Content 3
+  </p-tabPanel>
+</p-tabView>
