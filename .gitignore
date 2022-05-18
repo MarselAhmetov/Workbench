@@ -45,6 +45,8 @@ workbench-fe/node_modules
 workbench-fe/npm-debug.log
 workbench-fe/yarn-error.log
 
+workbench-fe/src/app/shared/services/client/
+
 # Miscellaneous
 workbench-fe/.angular/cache
 .sass-cache/

@@ -27,6 +27,7 @@ import { TabViewModule } from "primeng/tabview";
 import { KnobModule } from "primeng/knob";
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SettingCardComponent } from './pages/settings/setting-card/setting-card.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SettingCardComponent } from './pages/settings/setting-card/setting-card
     CardModule,
     CheckboxModule,
     FormsModule,
+    HttpClientModule,
     InputTextModule,
     KnobModule,
     MenuModule,

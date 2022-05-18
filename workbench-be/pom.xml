@@ -84,6 +84,11 @@
       <artifactId>mapstruct</artifactId>
       <version>1.4.2.Final</version>
     </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.6.8</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

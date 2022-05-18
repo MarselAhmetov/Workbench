@@ -3,11 +3,13 @@ package ru.marsel.workbench.security;
 import java.util.Collection;
 import java.util.Collections;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.marsel.workbench.model.User;
 
 @AllArgsConstructor
+@Data
 public class UserDetailsImpl implements UserDetails {
 
     private final User user;

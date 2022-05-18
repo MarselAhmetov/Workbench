@@ -37,12 +37,3 @@ SignUpRequest:
       type: string
     password:
       type: string
-
-ProjectAttributeType:
-  type: string
-  enum:
-    - INTEGRATION
-    - MESSENGER_BOT
-    - BACKEND
-    - FRONTEND
-    - MOBILE_APP

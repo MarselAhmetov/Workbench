@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "./shared/services/auth.service";
+import { UserService } from "./shared/services/user.service";
 import { Store } from "@ngxs/store";
 import { Observable } from "rxjs";
 
@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
 
   title$: Observable<string>;
 
-  constructor(readonly authService: AuthService, private readonly store: Store) {
+  constructor(readonly authService: UserService, private readonly store: Store) {
     this.title$ = this.store.select(e => e.app.currentPage);
   }
 

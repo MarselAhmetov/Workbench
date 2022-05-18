@@ -2,8 +2,7 @@ openapi: 3.0.0
 info:
   description: Api Documentation
   version: 0.1.0
-  title: Api Documentation
-  termsOfService: urn:tos
+  title: Workbench
   contact: {}
   license:
     name: Apache 2.0
@@ -25,14 +24,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#./definitions/Models.yml#/SignInRequest'
+              $ref: './definitions/Account.yml#/SignInRequest'
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#./definitions/Models.yml#/SignInResponse'
+                $ref: './definitions/Account.yml#/SignInResponse'
 
   /api/auth/sign-up:
     post:
@@ -45,11 +44,45 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#./definitions/Models.yml#/SignUpRequest'
+              $ref: './definitions/Account.yml#/SignUpRequest'
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: './definitions/Models.yml#/SignUpResponse'
+                $ref: './definitions/Account.yml#/SignUpResponse'
+
+  /api/project:
+    get:
+      tags:
+        - Project
+      summary: getAllProjectsByUserId
+      operationId: getAllProjectsByUserId
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './definitions/Project.yml#/Project'
+    post:
+      tags:
+        - Project
+      summary: createProject
+      operationId: createProject
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions/Project.yml#/ProjectCreationRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './definitions/Project.yml#/Project'

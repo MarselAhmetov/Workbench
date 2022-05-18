@@ -1,9 +1,9 @@
 package ru.marsel.workbench.model;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,11 +19,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Project extends LongIdBaseEntity {
-    String name;
+public class TaskType extends LongIdBaseEntity {
+    String title;
     String description;
-    @OneToOne(fetch = FetchType.EAGER)
-    Roadmap roadmap;
-    @ManyToOne(fetch = FetchType.EAGER)
-    User user;
+    @ManyToMany(fetch = FetchType.LAZY)
+    List<TaskType> parents;
 }

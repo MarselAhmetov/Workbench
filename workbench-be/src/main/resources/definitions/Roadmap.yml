@@ -1,0 +1,13 @@
+Roadmap:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    title:
+      type: string
+    types:
+      type: array
+      items:
+        $ref: './Task.yml#/Task'
+
