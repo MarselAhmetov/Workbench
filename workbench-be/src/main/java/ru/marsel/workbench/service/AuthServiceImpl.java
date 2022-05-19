@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.marsel.workbench.mapper.UserMapper;
 import ru.marsel.workbench.model.User;
 import ru.marsel.workbench.repository.UserRepository;
-import ru.marsel.workbench.security.JwtProvider;
+import ru.marsel.workbench.security.jwt.JwtTokenProvider;
 import ru.model.workbench.model.SignInRequestDto;
 import ru.model.workbench.model.SignInResponseDto;
 import ru.model.workbench.model.SignUpRequestDto;
@@ -18,7 +18,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-    private final JwtProvider jwtProvider;
+    private final JwtTokenProvider jwtProvider;
     private final UserMapper userMapper;
 
     @Override
@@ -27,8 +27,8 @@ public class AuthServiceImpl implements AuthService {
             .email(requestDto.getEmail())
             .password(passwordEncoder.encode(requestDto.getPassword()))
             .build();
-        userRepository.save(user);
-        String token = jwtProvider.generateToken(user);
+        user = userRepository.save(user);
+        String token = jwtProvider.createToken(user.getEmail());
         return new SignUpResponseDto()
             .user(userMapper.toUserDto(user))
             .token(token);
@@ -39,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findUserByEmail(signInRequestDto.getEmail())
             .orElseThrow(IllegalArgumentException::new);
         if (passwordEncoder.matches(signInRequestDto.getPassword(), user.getPassword())) {
-            String token = jwtProvider.generateToken(user);
+            String token = jwtProvider.createToken(user.getEmail());
             return new SignInResponseDto()
                 .token(token)
                 .user(userMapper.toUserDto(user));

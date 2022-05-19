@@ -1,10 +1,9 @@
 package ru.marsel.workbench.service;
 
-import java.awt.PageAttributes;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.marsel.workbench.model.Project;
 import ru.marsel.workbench.model.ProjectAttribute;
 import ru.marsel.workbench.model.Roadmap;
 import ru.marsel.workbench.model.Task;
@@ -61,6 +60,7 @@ public class RoadmapServiceImpl implements RoadmapService {
             .toList();
         var tasks = taskTypes.stream()
             .map(Task::new)
+            .map(taskRepository::save)
             .toList();
         tasks = linkTasks(tasks);
         var roadmap = Roadmap.builder()
@@ -73,15 +73,28 @@ public class RoadmapServiceImpl implements RoadmapService {
     private List<Task> linkTasks(List<Task> tasks) {
         tasks.forEach(task -> {
             var parents = findParentTasks(task.getParents(), tasks);
+            task.setParents(parents);
         });
         // TODO
         return tasks;
     }
 
     private List<Task> findParentTasks(List<Task> parents, List<Task> allTasks) {
-        return parents.stream()
-            .distinct()
-            .filter(allTasks::contains)
-            .toList();
+        List<Task> result = new ArrayList<>();
+        List<Task> parentsTemp = new ArrayList<>(parents);
+        while (result.isEmpty()) {
+            result = parentsTemp.stream()
+                .distinct()
+                .filter(allTasks::contains)
+                .toList();
+            parentsTemp = parentsTemp.stream()
+                .flatMap(parent -> parent.getParents().stream())
+                .distinct()
+                .toList();
+            if (parentsTemp.isEmpty()) {
+                break;
+            }
+        }
+        return result;
     }
 }

@@ -6,8 +6,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.marsel.workbench.repository.UserRepository;
+import ru.marsel.workbench.security.jwt.UserDetailsImpl;
 
-@Service
+@Service("customUserDetailsService")
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;

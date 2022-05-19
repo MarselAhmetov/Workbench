@@ -6,5 +6,5 @@ import ru.model.workbench.model.UserDto;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-    UserDto toUserDto(User dto);
+    UserDto toUserDto(User user);
 }
