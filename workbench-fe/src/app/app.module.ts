@@ -27,7 +27,9 @@ import { TabViewModule } from "primeng/tabview";
 import { KnobModule } from "primeng/knob";
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SettingCardComponent } from './pages/settings/setting-card/setting-card.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { BASE_PATH } from "./shared/services/client";
+import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 
 @NgModule({
   declarations: [
@@ -57,12 +59,15 @@ import {HttpClientModule} from "@angular/common/http";
     MenuModule,
     NgxsModule.forRoot([AppState], {
       developmentMode: !environment.production
-    }) ,
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
     SplitButtonModule,
     TabViewModule,
     ToolbarModule,
   ],
-  providers: [],
+  providers: [
+    {provide: BASE_PATH, useValue: environment.basePath}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

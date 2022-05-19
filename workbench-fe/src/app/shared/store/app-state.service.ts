@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { State } from "@ngxs/store";
+import { Action, State, StateContext } from "@ngxs/store";
+import { isAuthenticated } from "../services/user.service";
+import { UserLoggedInAction, UserLoggedOutAction } from "./app-actions";
+// import { UserLoggedInAction, UserLoggedOutAction } from "./app-actions";
 
 
 export interface AppStateModel {
@@ -11,7 +14,7 @@ export interface AppStateModel {
   name: 'app',
   defaults: {
     currentPage: 'Проекты',
-    isAuthenticated: false
+    isAuthenticated: isAuthenticated(),
   }
 })
 @Injectable({
@@ -20,4 +23,21 @@ export interface AppStateModel {
 export class AppState {
 
   constructor() { }
+
+  @Action(UserLoggedInAction)
+  userLoggedIn(ctx: StateContext<AppStateModel>) {
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      isAuthenticated: true
+    });
+  }
+  @Action (UserLoggedOutAction)
+  userLoggedOut(ctx: StateContext<AppStateModel>) {
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      isAuthenticated: false
+    });
+  }
 }

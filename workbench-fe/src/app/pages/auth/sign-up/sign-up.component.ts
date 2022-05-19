@@ -1,7 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {AuthService} from "../../../shared/services/client";
-import {UserService} from "../../../shared/services/user.service";
-import {flatMap, take, tap} from "rxjs";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AuthService } from "../../../shared/services/client";
+import { UserService } from "../../../shared/services/user.service";
+import { flatMap, from, map, take, tap } from "rxjs";
+import { Router } from "@angular/router";
+import { UserLoggedInAction } from "../../../shared/store/app-actions";
+import { Store } from "@ngxs/store";
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +12,7 @@ import {flatMap, take, tap} from "rxjs";
   styleUrls: ['./sign-up.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
 
   email = '';
   password = '';
@@ -17,7 +20,13 @@ export class SignUpComponent implements OnInit {
   subscribe = false;
 
 
-  constructor(private readonly authService: AuthService, private readonly userService: UserService) { }
+  constructor(
+      private readonly authService: AuthService,
+      private readonly userService: UserService,
+      private readonly router: Router,
+      private readonly store: Store,
+  ) {
+  }
 
   signUp() {
     this.authService.signUp({
@@ -25,12 +34,11 @@ export class SignUpComponent implements OnInit {
       password: this.password
     }).pipe(
         take(1),
-        tap(resp => this.userService.saveToLocalStorage(resp))
+        tap(resp => this.userService.saveToLocalStorage(resp)),
+        flatMap(() => this.store.dispatch(new UserLoggedInAction())),
+        map(() => this.router.navigateByUrl('/projects')),
+        flatMap(p => from(p)),
     ).subscribe();
 
   }
-
-  ngOnInit(): void {
-  }
-
 }

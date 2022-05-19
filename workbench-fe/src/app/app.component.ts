@@ -6,7 +6,8 @@ import { Observable } from "rxjs";
 @Component({
   selector: 'app-root',
   template: `
-    <div *ngIf="authService.isAuthenticated()">
+    <span>{{ authenticated$ | async }}</span>
+    <div *ngIf="authenticated$ | async;else plain" id="side">
       <div class="flex flex-row">
         <div class="basis-1/5">
           <app-sidebar></app-sidebar>
@@ -24,7 +25,8 @@ import { Observable } from "rxjs";
                 </span>
 
                 <div class="mx-1">
-                  <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="35" height="35" viewBox="0 0 35 35" fill="none"
+                       xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M17.675 19.7313C17.6458 19.7313 17.6021 19.7313 17.5729 19.7313C17.5292 19.7313 17.4708 19.7313 17.4271 19.7313C14.1167 19.6292 11.6375 17.0479 11.6375 13.8688C11.6375 10.6313 14.2771 7.99167 17.5146 7.99167C20.7521 7.99167 23.3917 10.6313 23.3917 13.8688C23.3771 17.0625 20.8833 19.6292 17.7188 19.7313C17.6896 19.7313 17.6896 19.7313 17.675 19.7313ZM17.5 10.1646C15.4583 10.1646 13.8104 11.8271 13.8104 13.8542C13.8104 15.8521 15.3708 17.4708 17.3542 17.5438C17.3979 17.5292 17.5438 17.5292 17.6896 17.5438C19.6438 17.4417 21.175 15.8375 21.1896 13.8542C21.1896 11.8271 19.5417 10.1646 17.5 10.1646Z"
                         fill="#2176FF"/>
@@ -51,6 +53,9 @@ import { Observable } from "rxjs";
                         fill="#2176FF"/>
                   </svg>
                 </div>
+                <div>
+                  <p-button label="Выход" (onClick)="userService.logout()"></p-button>
+                </div>
               </div>
             </p-toolbar>
           </div>
@@ -58,8 +63,12 @@ import { Observable } from "rxjs";
         </div>
       </div>
     </div>
-
-    <router-outlet *ngIf="!authService.isAuthenticated()"></router-outlet>
+    
+    <ng-template #plain>
+      <div id="center">
+        <router-outlet></router-outlet>
+      </div>
+    </ng-template>
   `,
   styles: [`
     :host ::ng-deep .p-toolbar {
@@ -77,15 +86,16 @@ import { Observable } from "rxjs";
     }
   `],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title$: Observable<string>;
+  authenticated$: Observable<boolean>;
 
-  constructor(readonly authService: UserService, private readonly store: Store) {
+  constructor(
+      readonly userService: UserService,
+      private readonly store: Store,
+  ) {
     this.title$ = this.store.select(e => e.app.currentPage);
-  }
-
-
-  ngOnInit(): void {
+    this.authenticated$ = this.store.select(e => e.app.isAuthenticated);
   }
 }

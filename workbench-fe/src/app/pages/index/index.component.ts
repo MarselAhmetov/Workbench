@@ -8,9 +8,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    console.log('const')
+  }
 
   ngOnInit(): void {
+    console.log('init')
   }
 
 }
