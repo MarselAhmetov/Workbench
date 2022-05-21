@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.marsel.workbench.model.User;
+import ru.marsel.workbench.model.user.User;
 
 @AllArgsConstructor
 @Data

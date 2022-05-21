@@ -1,4 +1,4 @@
-package ru.marsel.workbench.service;
+package ru.marsel.workbench.service.interfaces;
 
 import java.util.List;
 import ru.marsel.workbench.model.ProjectAttribute;

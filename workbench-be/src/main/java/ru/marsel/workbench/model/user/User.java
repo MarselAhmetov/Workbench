@@ -1,8 +1,9 @@
-package ru.marsel.workbench.model;
+package ru.marsel.workbench.model.user;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import ru.marsel.workbench.model.LongIdBaseEntity;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -17,8 +19,11 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Settings extends LongIdBaseEntity{
-    @OneToOne(fetch = FetchType.EAGER)
-    User user;
+public class User extends LongIdBaseEntity {
+    String password;
+    @Enumerated(EnumType.STRING)
+    Role role;
+    String email;
 }

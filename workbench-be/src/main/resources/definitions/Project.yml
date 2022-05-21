@@ -24,4 +24,15 @@ Project:
     roadmap:
       $ref: './Roadmap.yml#/Roadmap'
 
-
+ProjectAttribute:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    attributeName:
+      type: string
+    taskTypes:
+      type: array
+      items:
+        $ref: './TaskType.yml#/TaskType'

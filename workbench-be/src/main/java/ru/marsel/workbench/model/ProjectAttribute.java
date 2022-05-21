@@ -4,7 +4,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,8 +20,6 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProjectAttribute extends LongIdBaseEntity {
-    @ManyToOne(fetch = FetchType.EAGER)
-    Project project;
     String attributeName;
     @ManyToMany(fetch = FetchType.LAZY)
     List<TaskType> taskTypes;

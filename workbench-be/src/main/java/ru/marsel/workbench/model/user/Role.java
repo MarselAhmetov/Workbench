@@ -1,4 +1,4 @@
-package ru.marsel.workbench.model;
+package ru.marsel.workbench.model.user;
 
 import org.springframework.security.core.GrantedAuthority;
 

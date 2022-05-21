@@ -1,4 +1,4 @@
-package ru.marsel.workbench.service;
+package ru.marsel.workbench.service.interfaces;
 
 import ru.model.workbench.model.SignInRequestDto;
 import ru.model.workbench.model.SignInResponseDto;

@@ -5,10 +5,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.marsel.workbench.model.TaskType;
 import ru.marsel.workbench.repository.TaskTypeRepository;
+import ru.marsel.workbench.service.interfaces.TaskTypeService;
 
 @Service
 @RequiredArgsConstructor
-public class TaskTypeService {
+public class TaskTypeServiceImpl implements TaskTypeService {
     private final TaskTypeRepository nodeRepository;
 
     public List<TaskType> getAll() {

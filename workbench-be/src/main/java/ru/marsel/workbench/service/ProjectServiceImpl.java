@@ -1,16 +1,14 @@
 package ru.marsel.workbench.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.marsel.workbench.mapper.ProjectMapper;
-import ru.marsel.workbench.model.Project;
 import ru.marsel.workbench.repository.ProjectAttributeRepository;
 import ru.marsel.workbench.repository.ProjectRepository;
 import ru.marsel.workbench.security.AuthContext;
+import ru.marsel.workbench.service.interfaces.ProjectService;
+import ru.marsel.workbench.service.interfaces.RoadmapService;
 import ru.model.workbench.model.ProjectCreationRequestDto;
 import ru.model.workbench.model.ProjectDto;
 

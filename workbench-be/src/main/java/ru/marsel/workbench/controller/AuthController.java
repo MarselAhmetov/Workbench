@@ -3,7 +3,7 @@ package ru.marsel.workbench.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import ru.marsel.workbench.service.AuthService;
+import ru.marsel.workbench.service.interfaces.AuthService;
 import ru.model.workbench.api.AuthApi;
 import ru.model.workbench.model.SignInRequestDto;
 import ru.model.workbench.model.SignInResponseDto;

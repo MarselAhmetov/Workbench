@@ -21,6 +21,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Roadmap extends LongIdBaseEntity{
     @OneToMany(fetch = FetchType.LAZY)
-    List<Task> nodes;
+    List<Task> tasks;
     String title;
 }

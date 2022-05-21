@@ -2,14 +2,18 @@ package ru.marsel.workbench.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.marsel.workbench.model.ProjectAttribute;
 import ru.marsel.workbench.model.Roadmap;
 import ru.marsel.workbench.model.Task;
+import ru.marsel.workbench.model.TaskType;
 import ru.marsel.workbench.repository.TaskTypeRepository;
 import ru.marsel.workbench.repository.RoadmapRepository;
 import ru.marsel.workbench.repository.TaskRepository;
+import ru.marsel.workbench.service.interfaces.RoadmapService;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +24,7 @@ public class RoadmapServiceImpl implements RoadmapService {
     private final TaskTypeRepository taskTypeRepository;
 
     @Override
+    @Transactional
     public Roadmap createRoadmap(String title, List<Long> nodeIds) {
         var taskTypes = taskTypeRepository.findAllById(nodeIds);
         var tasks = taskTypes.stream()
@@ -30,7 +35,7 @@ public class RoadmapServiceImpl implements RoadmapService {
             .toList();
         linkTasks(tasks);
         var roadmap = Roadmap.builder()
-            .nodes(tasks)
+            .tasks(tasks)
             .title(title)
             .build();
         return roadmapRepository.save(roadmap);
@@ -65,27 +70,28 @@ public class RoadmapServiceImpl implements RoadmapService {
         tasks = linkTasks(tasks);
         var roadmap = Roadmap.builder()
             .title("Default")
-            .nodes(tasks)
+            .tasks(tasks)
             .build();
         return roadmapRepository.save(roadmap);
     }
 
     private List<Task> linkTasks(List<Task> tasks) {
         tasks.forEach(task -> {
-            var parents = findParentTasks(task.getParents(), tasks);
+            var parents = findParentTasks(task, tasks);
             task.setParents(parents);
         });
-        // TODO
         return tasks;
     }
 
-    private List<Task> findParentTasks(List<Task> parents, List<Task> allTasks) {
+    private List<Task> findParentTasks(Task task, List<Task> allTasks) {
         List<Task> result = new ArrayList<>();
-        List<Task> parentsTemp = new ArrayList<>(parents);
-        while (result.isEmpty()) {
-            result = parentsTemp.stream()
+        List<TaskType> resultTypes = new ArrayList<>();
+        List<TaskType> parentsTemp = new ArrayList<>(task.getType().getParents());
+        var allTaskTypes = allTasks.stream().map(Task::getType).toList();
+        while (resultTypes.isEmpty()) {
+            resultTypes = parentsTemp.stream()
                 .distinct()
-                .filter(allTasks::contains)
+                .filter(allTaskTypes::contains)
                 .toList();
             parentsTemp = parentsTemp.stream()
                 .flatMap(parent -> parent.getParents().stream())
@@ -95,6 +101,13 @@ public class RoadmapServiceImpl implements RoadmapService {
                 break;
             }
         }
+        for (Task allTask : allTasks) {
+            if (resultTypes.contains(allTask.getType())) {
+                result.add(allTask);
+            }
+        }
         return result;
     }
+
+
 }

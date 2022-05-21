@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.marsel.workbench.mapper.UserMapper;
-import ru.marsel.workbench.model.User;
+import ru.marsel.workbench.model.user.Role;
+import ru.marsel.workbench.model.user.User;
 import ru.marsel.workbench.repository.UserRepository;
 import ru.marsel.workbench.security.jwt.JwtTokenProvider;
+import ru.marsel.workbench.service.interfaces.AuthService;
 import ru.model.workbench.model.SignInRequestDto;
 import ru.model.workbench.model.SignInResponseDto;
 import ru.model.workbench.model.SignUpRequestDto;
@@ -26,6 +28,7 @@ public class AuthServiceImpl implements AuthService {
         User user = User.builder()
             .email(requestDto.getEmail())
             .password(passwordEncoder.encode(requestDto.getPassword()))
+            .role(Role.USER)
             .build();
         user = userRepository.save(user);
         String token = jwtProvider.createToken(user.getEmail());
