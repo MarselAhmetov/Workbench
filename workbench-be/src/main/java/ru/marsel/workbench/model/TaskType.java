@@ -21,7 +21,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TaskType extends LongIdBaseEntity {
     String title;
-    String description;
+    boolean isDocRequired;
+    String descriptionFilePath;
     @ManyToMany(fetch = FetchType.LAZY)
     List<TaskType> parents;
 }

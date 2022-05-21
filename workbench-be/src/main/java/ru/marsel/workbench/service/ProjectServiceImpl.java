@@ -26,6 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDto createProject(ProjectCreationRequestDto dto) {
         var project = projectMapper.toEntity(dto, authContext.getUser());
         var attributes = projectAttributeRepository.findAllById(dto.getAttributesIds());
+        project.setAttribute(attributes);
         project.setRoadmap(roadmapService.getDefaultRoadmap(attributes));
         return projectMapper.toDto(projectRepository.save(project));
     }

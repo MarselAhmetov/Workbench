@@ -89,11 +89,15 @@ public class RoadmapServiceImpl implements RoadmapService {
         List<TaskType> parentsTemp = new ArrayList<>(task.getType().getParents());
         var allTaskTypes = allTasks.stream().map(Task::getType).toList();
         while (resultTypes.isEmpty()) {
-            resultTypes = parentsTemp.stream()
-                .distinct()
-                .filter(allTaskTypes::contains)
-                .toList();
-            parentsTemp = parentsTemp.stream()
+            List<TaskType> parentsToDeep = new ArrayList<>();
+            for (TaskType parent : parentsTemp) {
+                if (allTaskTypes.contains(parent)) {
+                    resultTypes.add(parent);
+                } else {
+                    parentsToDeep.add(parent);
+                }
+            }
+            parentsTemp = parentsToDeep.stream()
                 .flatMap(parent -> parent.getParents().stream())
                 .distinct()
                 .toList();

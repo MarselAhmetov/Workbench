@@ -2,6 +2,8 @@ package ru.marsel.workbench.model;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -23,6 +25,8 @@ import lombok.experimental.FieldDefaults;
 public class Task extends LongIdBaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     TaskType type;
+    @Enumerated(EnumType.STRING)
+    TaskStatus status = TaskStatus.TODO;
     @ManyToMany(fetch = FetchType.LAZY)
     List<Task> parents;
 
