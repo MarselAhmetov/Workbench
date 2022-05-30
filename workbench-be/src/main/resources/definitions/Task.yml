@@ -4,7 +4,7 @@ Task:
     id:
       type: integer
       format: int64
-    nodeType:
+    type:
       $ref: './TaskType.yml#/TaskType'
     parentsIds:
       type: array

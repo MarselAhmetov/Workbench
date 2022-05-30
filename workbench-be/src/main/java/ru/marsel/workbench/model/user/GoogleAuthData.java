@@ -1,9 +1,8 @@
-package ru.marsel.workbench.model;
+package ru.marsel.workbench.model.user;
 
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import ru.marsel.workbench.model.LongIdBaseEntity;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -19,8 +19,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TaskType extends LongIdBaseEntity {
-    String title;
-    @ManyToMany(fetch = FetchType.LAZY)
-    List<TaskType> parents;
+public class GoogleAuthData extends LongIdBaseEntity {
+    String refreshToken;
+    String accessToken;
+    @OneToOne(fetch = FetchType.EAGER)
+    User user;
 }

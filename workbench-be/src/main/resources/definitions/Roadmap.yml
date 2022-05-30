@@ -6,7 +6,7 @@ Roadmap:
       format: int64
     title:
       type: string
-    types:
+    tasks:
       type: array
       items:
         $ref: './Task.yml#/Task'

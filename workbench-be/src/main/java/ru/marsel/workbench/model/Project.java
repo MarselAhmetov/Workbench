@@ -36,5 +36,5 @@ public class Project extends LongIdBaseEntity {
         name = "project_attributes_relations",
         joinColumns = @JoinColumn(name = "project_id"),
         inverseJoinColumns = @JoinColumn(name = "attribute_id"))
-    List<ProjectAttribute> attribute;
+    List<ProjectAttribute> attributes;
 }

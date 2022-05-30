@@ -3,10 +3,12 @@ package ru.marsel.workbench.service;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.marsel.workbench.mapper.ProjectMapper;
 import ru.marsel.workbench.repository.ProjectAttributeRepository;
 import ru.marsel.workbench.repository.ProjectRepository;
 import ru.marsel.workbench.security.AuthContext;
+import ru.marsel.workbench.service.interfaces.GoogleDriveService;
 import ru.marsel.workbench.service.interfaces.ProjectService;
 import ru.marsel.workbench.service.interfaces.RoadmapService;
 import ru.model.workbench.model.ProjectCreationRequestDto;
@@ -21,13 +23,16 @@ public class ProjectServiceImpl implements ProjectService {
     private final AuthContext authContext;
     private final RoadmapService roadmapService;
     private final ProjectAttributeRepository projectAttributeRepository;
+    private final GoogleDriveService googleDriveService;
 
     @Override
+    @Transactional
     public ProjectDto createProject(ProjectCreationRequestDto dto) {
         var project = projectMapper.toEntity(dto, authContext.getUser());
         var attributes = projectAttributeRepository.findAllById(dto.getAttributesIds());
-        project.setAttribute(attributes);
+        project.setAttributes(attributes);
         project.setRoadmap(roadmapService.getDefaultRoadmap(attributes));
+        googleDriveService.createFolder(project.getName());
         return projectMapper.toDto(projectRepository.save(project));
     }
 
