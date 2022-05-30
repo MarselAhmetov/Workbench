@@ -60,7 +60,7 @@ import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
     NgxsModule.forRoot([AppState], {
       developmentMode: !environment.production
     }),
-    NgxsReduxDevtoolsPluginModule.forRoot(),
+    // NgxsReduxDevtoolsPluginModule.forRoot(),
     SplitButtonModule,
     TabViewModule,
     ToolbarModule,

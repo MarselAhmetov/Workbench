@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "./shared/services/user.service";
 import { Store } from "@ngxs/store";
-import { Observable } from "rxjs";
+import {map, Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
   template: `
-    <span>{{ authenticated$ | async }}</span>
     <div *ngIf="authenticated$ | async;else plain" id="side">
       <div class="flex flex-row">
         <div class="basis-1/5">

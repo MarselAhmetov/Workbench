@@ -1,26 +1,29 @@
-<header>
-  <p-toolbar [styleClass]="'m-1'">
-    <div class="p-toolbar-group-left">
-      <s-logo></s-logo>
-      <a class="ml-8 no-underline" href="/src">Что нового</a>
-      <a class="mx-2 no-underline" href="/src">Возможности</a>
-      <a class="no-underline" href="/src">О нас</a>
-    </div>
+<div>
+  <header>
+    <p-toolbar>
+      <div class="p-toolbar-group-left">
+        <s-logo></s-logo>
+        <a class="ml-8 no-underline" href="/src">Что нового</a>
+        <a class="mx-2 no-underline" href="/src">Возможности</a>
+        <a class="no-underline" href="/src">О нас</a>
+      </div>
 
-    <div class="p-toolbar-group-right">
-      <a class="no-underline" routerLink="/sign-in">Войти</a>
-      <a class="mx-2 sign-in-button no-underline" routerLink="sign-up">Регистрация</a>
+      <div class="p-toolbar-group-right">
+        <a class="no-underline" routerLink="/sign-in">Войти</a>
+        <a class="mx-2 sign-in-button no-underline" routerLink="/sign-up">Регистрация</a>
+      </div>
+    </p-toolbar>
+  </header>
+  <main>
+    <div class="content-container m-6 flex flex-row">
+      <div class="flex flex-col basis-2/5">
+        <p>Создайте свой проект без лишней головной боли! Создайте его вместе с нами!</p>
+        <s-button class="create-project" label="Создать проект"></s-button>
+      </div>
+      <iframe class="video-player basis-3/5" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
     </div>
-  </p-toolbar>
-</header>
-
-<main class="m-6 flex flex-row">
-  <div class="flex flex-col basis-2/5">
-    <p>Создайте свой проект без лишней головной боли! Создайте его вместе с нами!</p>
-    <s-button label="Создать проект"></s-button>
-  </div>
-  <iframe class="basis-3/5" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-</main>
+  </main>
+</div>

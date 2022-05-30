@@ -1,5 +1,5 @@
 p {
-  font-family: 'Roboto';
+  font-family: 'Roboto', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
@@ -7,12 +7,17 @@ p {
   color: #F79824;
 }
 
-:host ::ng-deep {
-  .p-card-body {
-    padding: 0;
-  }
-  .p-card-content {
-    padding: 0;
-  }
+.card-body {
+  box-shadow: 4px 4px 15px 4px #00000040;
+  border-radius: 30px;
+  padding: 50px;
+}
+
+.logo {
+  padding: 8vh;
+}
+
+.card-title {
+  margin-bottom: 60px;
 }
 

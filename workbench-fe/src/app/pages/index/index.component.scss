@@ -14,17 +14,35 @@ app-index {
 
 .sign-in-button {
   border: 1px solid #F79824;
-  box-sizing: border-box;
-  border-radius: 200px;
-  padding: 0.5em;
+  border-radius: 15px;
+  padding: 10px;
   color: #F79824
 }
 
 main p {
-  font-family: Roboto;
+  font-family: "Roboto", serif;
   font-size: 50px;
-  font-weight: 300;
+  font-weight: 100;
   line-height: 70px;
   letter-spacing: 0em;
   text-align: left;
 }
+
+.content-container {
+  position: relative;
+  margin: 50px 110px 50px 110px;
+}
+
+.video-player {
+  height: 55vh;
+  width: 70vw;
+}
+
+.create-project {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+
+
