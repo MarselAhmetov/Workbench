@@ -27,9 +27,10 @@ import { TabViewModule } from "primeng/tabview";
 import { KnobModule } from "primeng/knob";
 import { SettingsComponent } from './pages/settings/settings.component';
 import { SettingCardComponent } from './pages/settings/setting-card/setting-card.component';
-import { HttpClientModule } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BASE_PATH } from "./shared/services/client";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
+import {AuthInterceptor} from "./auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -66,7 +67,12 @@ import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
     ToolbarModule,
   ],
   providers: [
-    {provide: BASE_PATH, useValue: environment.basePath}
+    {provide: BASE_PATH, useValue: environment.basePath},
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi   : true,
+    }
   ],
   bootstrap: [AppComponent]
 })

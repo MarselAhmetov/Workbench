@@ -1,11 +1,13 @@
 <p-tabView>
   <p-tabPanel header="Активные">
-    <s-project-card></s-project-card>
+    <div style="display: flex; width: 100%">
+      <div *ngFor="let item of projects">
+        <s-project-card [project]=item></s-project-card>
+      </div>
+    </div>
   </p-tabPanel>
   <p-tabPanel header="Завершенные">
-    Content 2
   </p-tabPanel>
   <p-tabPanel header="Архив">
-    Content 3
   </p-tabPanel>
 </p-tabView>

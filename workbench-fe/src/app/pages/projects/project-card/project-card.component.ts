@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import {Project} from "../../../shared/services/client";
 
 @Component({
   selector: 's-project-card',
@@ -10,6 +11,9 @@ export class ProjectCardComponent implements OnInit {
 
   @Input()
   progress = 15;
+
+  @Input()
+  project!: Project;
 
   constructor() { }
 

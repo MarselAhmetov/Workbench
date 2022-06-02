@@ -37,4 +37,8 @@ export class UserService {
     // console.log(`isAuthenticated called, value is ${res}`)
     return res;
   }
+
+  static getToken(): string | null {
+    return localStorage.getItem(TOKEN_KEY);
+  }
 }

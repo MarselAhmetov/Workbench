@@ -12,7 +12,7 @@ import { UserLoggedInAction } from "../../../shared/store/app-actions";
   styleUrls: ['./sign-in.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignInComponent implements OnDestroy{
+export class SignInComponent implements OnDestroy {
 
   email = '';
   password = '';
