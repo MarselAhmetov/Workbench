@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, OnDestroy} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {Project, ProjectService} from "../../shared/services/client";
 import {Subscription, tap} from "rxjs";
 

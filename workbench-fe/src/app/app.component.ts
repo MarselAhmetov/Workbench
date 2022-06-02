@@ -53,7 +53,7 @@ import {map, Observable} from "rxjs";
                   </svg>
                 </div>
                 <div>
-                  <p-button label="Выход" (onClick)="userService.logout()"></p-button>
+                  <s-button label="Выход" (click)="userService.logout()"></s-button>
                 </div>
               </div>
             </p-toolbar>
