@@ -119,3 +119,85 @@ paths:
         200:
           description: OK
           content: {}
+
+  /api/task/template/download:
+    get:
+      tags:
+        - Task
+      summary: downloadTaskTemplate
+      operationId: downloadTaskTemplate
+      parameters:
+        - name: taskId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: Template file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
+  /api/task/template/upload-to-drive:
+    post:
+      tags:
+        - Task
+      summary: uploadTemplateToDrive
+      operationId: uploadTemplateToDrive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions/Task.yml#/Task'
+      responses:
+        200:
+          description: OK
+          content: { }
+
+  /api/task/validate/drive:
+    post:
+      tags:
+        - Task
+      summary: validateTaskDocumentFromDrive
+      operationId: validateTaskDocumentFromDrive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions/Task.yml#/Task'
+      responses:
+        200:
+          description: OK
+          content: { }
+
+  /api/task/validate:
+    post:
+      tags:
+        - Task
+      summary: validateTaskDocument
+      operationId: validateTaskDocument
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                taskId:
+                  type: integer
+                  format: int64
+                file:
+                  type: string
+                  format: binary
+              required:
+                - fields
+                - file
+      responses:
+        200:
+          description: OK
+          content: { }
