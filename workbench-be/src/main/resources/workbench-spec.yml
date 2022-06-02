@@ -102,3 +102,20 @@ paths:
                 type: array
                 items:
                   $ref: './definitions/Project.yml#/ProjectAttribute'
+
+  /api/integration/google-drive:
+    post:
+      tags:
+        - Integration
+      summary: getAccessGoogleDriveApi
+      operationId: getAccessGoogleDriveApi
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions/Integration.yml#/GoogleDriveCode'
+      responses:
+        200:
+          description: OK
+          content: {}

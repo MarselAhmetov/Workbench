@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
@@ -29,6 +30,9 @@ public class Task extends LongIdBaseEntity {
     TaskStatus status = TaskStatus.TODO;
     @ManyToMany(fetch = FetchType.LAZY)
     List<Task> parents;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "roadmap_id")
+    Roadmap roadmap;
 
     public Task(TaskType type) {
         this.type = type;

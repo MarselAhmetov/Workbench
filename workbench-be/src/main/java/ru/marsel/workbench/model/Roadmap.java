@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +21,9 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Roadmap extends LongIdBaseEntity{
-    @OneToMany(fetch = FetchType.LAZY)
-    List<Task> tasks;
     String title;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "roadmap")
+    List<Task> tasks;
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "roadmap")
+    Project project;
 }

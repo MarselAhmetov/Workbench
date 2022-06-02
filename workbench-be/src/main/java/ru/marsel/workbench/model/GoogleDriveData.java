@@ -1,4 +1,4 @@
-package ru.marsel.workbench.model.user;
+package ru.marsel.workbench.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +10,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import ru.marsel.workbench.model.LongIdBaseEntity;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -19,9 +18,8 @@ import ru.marsel.workbench.model.LongIdBaseEntity;
 @NoArgsConstructor
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GoogleAuthData extends LongIdBaseEntity {
-    String refreshToken;
-    String accessToken;
+public class GoogleDriveData extends LongIdBaseEntity {
+    String projectFolderId;
     @OneToOne(fetch = FetchType.EAGER)
-    User user;
+    Project project;
 }

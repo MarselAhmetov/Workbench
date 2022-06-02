@@ -1,0 +1,5 @@
+GoogleDriveCode:
+  type: object
+  properties:
+    code:
+      type: string

@@ -3,6 +3,7 @@ package ru.marsel.workbench.controller;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import ru.marsel.workbench.service.interfaces.ProjectAttributeService;
 import ru.marsel.workbench.service.interfaces.ProjectService;
@@ -13,6 +14,7 @@ import ru.model.workbench.model.ProjectDto;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:4200")
 public class ProjectController implements ProjectApi {
 
     private final ProjectService projectService;

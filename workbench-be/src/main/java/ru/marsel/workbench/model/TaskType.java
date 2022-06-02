@@ -23,4 +23,5 @@ public class TaskType extends LongIdBaseEntity {
     String title;
     @ManyToMany(fetch = FetchType.LAZY)
     List<TaskType> parents;
+    String templatePath;
 }

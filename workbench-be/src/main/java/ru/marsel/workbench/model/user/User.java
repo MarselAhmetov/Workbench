@@ -26,4 +26,5 @@ public class User extends LongIdBaseEntity {
     @Enumerated(EnumType.STRING)
     Role role;
     String email;
+    Boolean isGoogleConnected;
 }
