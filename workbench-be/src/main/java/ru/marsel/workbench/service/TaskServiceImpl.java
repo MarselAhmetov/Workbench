@@ -56,9 +56,22 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDto validateTaskDocument(Long taskId) {
         Task task = taskRepository.findById(taskId).orElseThrow();
-        task.setStatus(TaskStatus.DONE);
-        taskRepository.save(task);
+        task = finishTask(task);
         return taskMapper.toDto(task);
+    }
+
+    private Task finishTask(Task task) {
+        task.setStatus(TaskStatus.DONE);
+        var children = taskRepository.getChildren(task.getId());
+
+        for (Task child : children) {
+            var forbidden = child.getParents().stream().anyMatch(parent -> parent.getStatus().equals(TaskStatus.LOCKED));
+            if (!forbidden) {
+                child.setStatus(TaskStatus.TODO);
+                taskRepository.save(child);
+            }
+        }
+        return taskRepository.save(task);
     }
 
     @Override

@@ -1,4 +1,10 @@
 <div>
   <div style="width: 100%; display: flex; font-size: 30px; padding: 10px 30px">{{(task$ | async)?.title}}</div>
   <div style="width: 100%; height: 300px; display: flex; font-size: 20px; padding: 10px 70px">{{(task$ | async)?.description}}</div>
+  <div *ngIf="(task$ | async)?.status === 'TODO'"  style="width: 250px">
+    <s-button label="Загрузить шаблон" (click)="getTemplate()"></s-button>
+  </div>
+  <div *ngIf="(task$ | async)?.status === 'IN_PROGRESS'">
+    <s-button label="Проверить документ" (click)="validateDocument()"></s-button>
+  </div>
 </div>
