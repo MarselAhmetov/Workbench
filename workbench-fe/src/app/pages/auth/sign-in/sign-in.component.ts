@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { AuthService } from "../../../shared/services/client";
+import {AuthService, SignInResponse, SignUpResponse} from "../../../shared/services/client";
 import { UserService } from "../../../shared/services/user.service";
 import { flatMap, from, map, Observable, Subscription, take, tap } from "rxjs";
 import { Router } from "@angular/router";
@@ -9,8 +9,7 @@ import { UserLoggedInAction } from "../../../shared/store/app-actions";
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnDestroy {
 
@@ -35,7 +34,7 @@ export class SignInComponent implements OnDestroy {
     }).pipe(
         take(1),
         tap(resp => this.userService.saveToLocalStorage(resp)),
-        flatMap(() => this.store.dispatch(new UserLoggedInAction())),
+        flatMap((resp: SignInResponse) => this.store.dispatch(new UserLoggedInAction(resp.user))),
         map(() => this.router.navigateByUrl('/projects')),
         flatMap(p => from(p)),
     ).subscribe();

@@ -27,7 +27,7 @@ public class Task extends LongIdBaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     TaskType type;
     @Enumerated(EnumType.STRING)
-    TaskStatus status = TaskStatus.TODO;
+    TaskStatus status = TaskStatus.LOCKED;
     @ManyToMany(fetch = FetchType.LAZY)
     List<Task> parents;
     @ManyToOne(fetch = FetchType.LAZY)

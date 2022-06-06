@@ -11,7 +11,7 @@ import {map, Observable} from "rxjs";
         <div class="basis-1/5">
           <app-sidebar></app-sidebar>
         </div>
-        <div class="basis-4/5">
+        <div class="basis-4/5" style="padding-right: 30px">
           <div>
             <p-toolbar [styleClass]="'m-1'">
               <div class="p-toolbar-group-left">
@@ -20,7 +20,7 @@ import {map, Observable} from "rxjs";
 
               <div class="p-toolbar-group-right">
                 <span class="mx-2">
-                <a class="no-underline" routerLink="/sign-in">Марселло</a>
+                <a class="no-underline" routerLink="/sign-in">{{ this.userEmail$ | async }}</a>
                 </span>
 
                 <div class="mx-1">
@@ -62,7 +62,7 @@ import {map, Observable} from "rxjs";
         </div>
       </div>
     </div>
-    
+
     <ng-template #plain>
       <div id="center">
         <router-outlet></router-outlet>
@@ -70,12 +70,14 @@ import {map, Observable} from "rxjs";
     </ng-template>
   `,
   styles: [`
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+    
     :host ::ng-deep .p-toolbar {
       background: none;
       border: none;
 
       h1 {
-        font-family: 'Roboto';
+        font-family: "Roboto", serif;
         font-style: normal;
         font-weight: 300;
         font-size: 40px;
@@ -83,12 +85,15 @@ import {map, Observable} from "rxjs";
         color: #31393C;
       }
     }
+    
   `],
 })
 export class AppComponent {
 
   title$: Observable<string>;
   authenticated$: Observable<boolean>;
+  userEmail$: Observable<string>;
+
 
   constructor(
       readonly userService: UserService,
@@ -96,5 +101,8 @@ export class AppComponent {
   ) {
     this.title$ = this.store.select(e => e.app.currentPage);
     this.authenticated$ = this.store.select(e => e.app.isAuthenticated);
+    this.userEmail$ = this.store.select(e => e.app.user).pipe(
+        map(u => !!u ? u.email : 'hi')
+    );
   }
 }

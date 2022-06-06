@@ -2,7 +2,6 @@ package ru.marsel.workbench.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import ru.marsel.workbench.service.interfaces.GoogleDriveService;
 import ru.model.workbench.api.IntegrationApi;
@@ -10,7 +9,6 @@ import ru.model.workbench.model.GoogleDriveCodeDto;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:4200")
 public class IntegrationController implements IntegrationApi {
 
     private final GoogleDriveService googleDriveService;

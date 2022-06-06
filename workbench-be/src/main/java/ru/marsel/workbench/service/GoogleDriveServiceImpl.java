@@ -65,7 +65,7 @@ public class GoogleDriveServiceImpl implements GoogleDriveService {
     public void exchangeCodeAndSaveCredentials(String code) {
         User user = authContext.getUser();
         TokenResponse tokenResponse = googleFlow.newTokenRequest(code)
-            .setRedirectUri("http://localhost:8080/login/oauth2/code/google")
+            .setRedirectUri("http://localhost:4200/login/oauth2/code/google")
             .execute();
         googleFlow.createAndStoreCredential(tokenResponse, user.getId().toString());
         user.setIsGoogleConnected(true);

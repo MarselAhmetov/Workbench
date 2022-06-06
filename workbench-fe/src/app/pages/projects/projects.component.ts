@@ -1,6 +1,7 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Project, ProjectService} from "../../shared/services/client";
-import {Subscription, tap} from "rxjs";
+import {map, Observable, of} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-projects',
@@ -10,22 +11,19 @@ import {Subscription, tap} from "rxjs";
 })
 export class ProjectsComponent implements OnInit {
 
-  private project$?: Subscription;
-
-  projects: Project[] = [];
+  project$: Observable<Project[]> = of([]);
 
   constructor(
       private readonly projectService: ProjectService,
+      private readonly router: Router,
   ) {
   }
 
-  getProjects() {
-    this.project$ = this.projectService.getAllProjectsByUserId().pipe(
-        tap(resp => this.projects = resp),
-    ).subscribe();
+  ngOnInit() {
+    this.project$ = this.projectService.getAllProjectsByUserId();
   }
 
-  ngOnInit() {
-    this.getProjects()
+  public openProject(id?: number): void {
+    this.router.navigateByUrl('/project/' + id)
   }
 }

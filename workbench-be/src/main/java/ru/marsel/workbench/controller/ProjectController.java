@@ -14,7 +14,6 @@ import ru.model.workbench.model.ProjectDto;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:4200")
 public class ProjectController implements ProjectApi {
 
     private final ProjectService projectService;
@@ -34,5 +33,10 @@ public class ProjectController implements ProjectApi {
     @Override
     public ResponseEntity<List<ProjectDto>> getAllProjectsByUserId() {
         return ResponseEntity.ok(projectService.findAllByUser());
+    }
+
+    @Override
+    public ResponseEntity<ProjectDto> getProjectById(Long projectId) {
+        return ResponseEntity.ok(projectService.getProject(projectId));
     }
 }

@@ -6,16 +6,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import ru.marsel.workbench.service.interfaces.TaskService;
 import ru.model.workbench.api.TaskApi;
 import ru.model.workbench.model.TaskDto;
+import ru.model.workbench.model.TaskItemDto;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:4200")
 public class TaskController implements TaskApi {
 
     private final TaskService taskService;
@@ -32,6 +31,11 @@ public class TaskController implements TaskApi {
     }
 
     @Override
+    public ResponseEntity<TaskItemDto> getTaskById(Long taskId) {
+        return ResponseEntity.ok(taskService.getById(taskId));
+    }
+
+    @Override
     public ResponseEntity<Void> uploadTemplateToDrive(TaskDto taskDto) {
         taskService.createTemplateInDrive(taskDto.getId());
         return ResponseEntity.ok().build();
@@ -44,6 +48,7 @@ public class TaskController implements TaskApi {
 
     @Override
     public ResponseEntity<Void> validateTaskDocumentFromDrive(TaskDto taskDto) {
-        return null;
+        taskService.validateTaskDocument(taskDto.getId());
+        return ResponseEntity.ok().build();
     }
 }

@@ -2,13 +2,13 @@ package ru.marsel.workbench.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.marsel.workbench.model.ProjectAttribute;
 import ru.marsel.workbench.model.Roadmap;
 import ru.marsel.workbench.model.Task;
+import ru.marsel.workbench.model.TaskStatus;
 import ru.marsel.workbench.model.TaskType;
 import ru.marsel.workbench.repository.TaskTypeRepository;
 import ru.marsel.workbench.repository.RoadmapRepository;
@@ -26,19 +26,7 @@ public class RoadmapServiceImpl implements RoadmapService {
     @Override
     @Transactional
     public Roadmap createRoadmap(String title, List<Long> nodeIds) {
-        var taskTypes = taskTypeRepository.findAllById(nodeIds);
-        var tasks = taskTypes.stream()
-            .map(nodeType -> Task.builder()
-                .type(nodeType)
-                .build())
-            .map(taskRepository::save)
-            .toList();
-        linkTasks(tasks);
-        var roadmap = Roadmap.builder()
-            .tasks(tasks)
-            .title(title)
-            .build();
-        return roadmapRepository.save(roadmap);
+      return null;
     }
 
     @Override
@@ -59,20 +47,28 @@ public class RoadmapServiceImpl implements RoadmapService {
 
     @Override
     public Roadmap getDefaultRoadmap(List<ProjectAttribute> attributes) {
-        var taskTypes = attributes.stream()
+        var roadmap = roadmapRepository.save(Roadmap.builder()
+            .title("Default")
+            .build());
+        var tasks = attributes.stream()
             .flatMap(attribute -> attribute.getTaskTypes().stream())
             .distinct()
-            .toList();
-        var tasks = taskTypes.stream()
-            .map(Task::new)
+            .map(taskType -> Task.builder()
+                .type(taskType)
+                .roadmap(roadmap)
+                .status(TaskStatus.LOCKED)
+                .build())
             .map(taskRepository::save)
             .toList();
-        tasks = linkTasks(tasks);
-        var roadmap = Roadmap.builder()
-            .title("Default")
-            .tasks(tasks)
-            .build();
-        return roadmapRepository.save(roadmap);
+        linkTasks(tasks);
+        tasks.forEach(task -> {
+            if (task.getParents() == null || task.getParents().isEmpty()) {
+                task.setStatus(TaskStatus.TODO);
+            }
+        });
+        taskRepository.saveAll(tasks);
+        roadmap.setTasks(tasks);
+        return roadmap;
     }
 
     private List<Task> linkTasks(List<Task> tasks) {

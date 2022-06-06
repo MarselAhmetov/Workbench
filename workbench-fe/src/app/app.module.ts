@@ -31,6 +31,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BASE_PATH } from "./shared/services/client";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import {AuthInterceptor} from "./auth-interceptor";
+import {GoogleIntegrationComponent} from "./pages/integration/google.integration.component";
+import {ProjectComponent} from "./pages/project/project.component";
+import {TaskComponent} from "./pages/task/task.component";
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import {AuthInterceptor} from "./auth-interceptor";
     ProjectCardComponent,
     SettingsComponent,
     SettingCardComponent,
+    GoogleIntegrationComponent,
+    ProjectComponent,
+    TaskComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -59,9 +65,11 @@ import {AuthInterceptor} from "./auth-interceptor";
     KnobModule,
     MenuModule,
     NgxsModule.forRoot([AppState], {
-      developmentMode: !environment.production
+      // developmentMode: !environment.production
     }),
-    // NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot(
+        {disabled: false}
+    ),
     SplitButtonModule,
     TabViewModule,
     ToolbarModule,

@@ -17,7 +17,6 @@ import ru.model.workbench.model.SignUpResponseDto;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:4200")
 public class AuthController implements AuthApi {
 
     private final AuthService authService;

@@ -1,0 +1,23 @@
+<p-tabView>
+  <p-tabPanel header="Информация" style="">
+    <div>
+      <div style="display: flex">
+        <p>Название проекта: </p> {{(project$ | async)?.name}}
+      </div>
+      <div style="display: flex">
+        <p>Описание проекта: </p> {{(project$ | async)?.description}}
+      </div>
+    </div>
+    <div id="chart"></div>
+  </p-tabPanel>
+  <p-tabPanel header="Дорожная карта">
+    <div *ngIf="roadmap" >
+      <div *ngFor="let item of roadmap.tasks" style="margin-right:30px">
+        <div style="width: 100%; border: 1px solid; display: flex" (click)="openTask(item.id)">
+          {{ item.type ? item.type.title : '' }}
+          {{ item.status }}
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>

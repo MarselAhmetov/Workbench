@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { SignUpResponse } from "./client";
+import {SignUpResponse, User} from "./client";
 import { Router } from "@angular/router";
 import { Store } from "@ngxs/store";
 import { flatMap, from, Observable, take, tap } from "rxjs";
 import { UserLoggedOutAction } from "../store/app-actions";
 
 const TOKEN_KEY = 'AUTH_TOKEN';
+const USER_KEY = 'USER_KEY';
 
 export const isAuthenticated = () => !!localStorage.getItem(TOKEN_KEY);
+export const userFromLocalStorage = () => JSON.parse(localStorage.getItem(USER_KEY) || '{}');
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,7 @@ export class UserService {
 
   saveToLocalStorage(response: SignUpResponse) {
     localStorage.setItem(TOKEN_KEY, response.token || '');
+    localStorage.setItem(USER_KEY, JSON.stringify(response.user));
   }
 
   logout() {

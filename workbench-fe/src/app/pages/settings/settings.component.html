@@ -32,27 +32,16 @@
       <p-card>
         <ng-template pTemplate="header">
           <div class="mx-4 pt-4 flex flex-row justify-between">
-            <h2>Еще настройки</h2>
+            <h2>Настройки интеграций</h2>
           </div>
         </ng-template>
         <div class="flex flex-col">
-          <div>
-            <p-checkbox [(ngModel)]="subscribeSettings.serviceNews" [binary]="true"
-                        inputId="serviceNews"></p-checkbox>
-            <label for="serviceNews">Показывать прогресс на карточке проекта </label>
-          </div>
-
-          <div>
-            <p-checkbox [(ngModel)]="subscribeSettings.projectNotification" [binary]="true"
-                        inputId="projectNotification"></p-checkbox>
-            <label for="projectNotification">Показывать описание на карточке проекта</label>
-          </div>
+          <s-button (click)="googleOauth2()" label="Подключить Google Drive"></s-button>
         </div>
       </p-card>
     </div>
   </p-tabPanel>
   <p-tabPanel header="Интеграции">
-    aha
   </p-tabPanel>
   <p-tabPanel header="Дополнительные">
     Content 3

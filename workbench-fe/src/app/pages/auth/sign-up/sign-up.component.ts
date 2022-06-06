@@ -9,8 +9,7 @@ import { Store } from "@ngxs/store";
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
 

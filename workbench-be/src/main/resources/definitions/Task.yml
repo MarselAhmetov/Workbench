@@ -6,9 +6,30 @@ Task:
       format: int64
     type:
       $ref: './TaskType.yml#/TaskType'
+    status:
+      type: string
     parentsIds:
       type: array
       items:
         type: integer
         format: int64
+
+TaskItem:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    title:
+      type: string
+    description:
+      type: string
+    status:
+      type: string
+    parentsIds:
+      type: array
+      items:
+        type: integer
+        format: int64
+
 
