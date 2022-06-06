@@ -12,7 +12,7 @@
 
     <div class="flex flex-row justify-between">
       <span>Deadline: 1 day ago</span>
-      <p-knob [(ngModel)]="progress" valueColor="Red" [readonly]="true"></p-knob>
+      <p-knob [(ngModel)]="project.progress" [valueColor]="project.progress ? ((project.progress >= 25) ? ((project.progress >= 50) ? 'green' : 'yellow') : 'red') : 'green'" [readonly]="true"></p-knob>
     </div>
   </div>
 </p-card>

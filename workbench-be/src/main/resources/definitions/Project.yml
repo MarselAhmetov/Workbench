@@ -23,6 +23,8 @@ Project:
       type: string
     roadmap:
       $ref: './Roadmap.yml#/Roadmap'
+    progress:
+      type: integer
 
 ProjectAttribute:
   type: object

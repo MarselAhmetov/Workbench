@@ -45,10 +45,10 @@ export class TaskComponent implements OnInit{
   public validateDocument() {
     this.task$.pipe(
         map(task => {
-          this.taskService.validateTaskDocumentFromDrive(task).pipe()
-          .subscribe()
+          this.taskService.validateTaskDocumentFromDrive(task).pipe(
+              map(() => this.getTask())
+          ).subscribe()
         }),
-        tap(() => this.getTask())
     ).subscribe()
   }
 }

@@ -65,8 +65,9 @@ public class TaskServiceImpl implements TaskService {
         var children = taskRepository.getChildren(task.getId());
 
         for (Task child : children) {
-            var forbidden = child.getParents().stream().anyMatch(parent -> parent.getStatus().equals(TaskStatus.LOCKED));
-            if (!forbidden) {
+            var forbidden = child.getParents().stream()
+                .anyMatch(parent -> parent.getStatus().equals(TaskStatus.LOCKED));
+            if (!forbidden && child.getStatus().equals(TaskStatus.LOCKED)) {
                 child.setStatus(TaskStatus.TODO);
                 taskRepository.save(child);
             }

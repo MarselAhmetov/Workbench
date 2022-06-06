@@ -10,9 +10,6 @@ import {Project} from "../../../shared/services/client";
 export class ProjectCardComponent implements OnInit {
 
   @Input()
-  progress = 15;
-
-  @Input()
   project!: Project;
 
   constructor() { }
