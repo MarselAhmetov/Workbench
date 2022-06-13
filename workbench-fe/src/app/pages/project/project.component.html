@@ -11,9 +11,9 @@
     <div id="chart"></div>
   </p-tabPanel>
   <p-tabPanel header="Дорожная карта">
-    <div *ngIf="roadmap" >
-      <div *ngFor="let item of roadmap.tasks" style="margin-right:30px">
-        <div style="width: 100%; border: 1px solid; display: flex" (click)="openTask(item.id)">
+    <div *ngIf="roadmap && roadmap.tasks" >
+      <div *ngFor="let item of roadmap.tasks.sort(compare)" style="margin-right:30px">
+        <div style="width: 100%; border: 1px solid; display: flex; {{item.status == 'LOCKED' ?  'background-color: lightgrey;' : item.status == 'TODO' ? 'background-color: lightyellow;' : 'background-color: lightgreen;'}}" (click)="openTask(item.id)">
           {{ item.type ? item.type.title : '' }}
           {{ item.status }}
         </div>

@@ -8,19 +8,19 @@
           </div>
         </ng-template>
         <div class="flex flex-col">
-          <div>
+          <div style="margin: 5px">
             <p-checkbox [(ngModel)]="subscribeSettings.serviceNews" [binary]="true"
                         inputId="serviceNews"></p-checkbox>
             <label style="margin-left: 10px;" for="serviceNews">Оповещать о новых возможностях сервиса</label>
           </div>
 
-          <div>
+          <div style="margin: 5px">
             <p-checkbox [(ngModel)]="subscribeSettings.projectNotification" [binary]="true"
                         inputId="projectNotification"></p-checkbox>
             <label style="margin-left: 10px;" for="projectNotification">Оповещать о изменениях в проекте</label>
           </div>
 
-          <div>
+          <div style="margin: 5px">
             <p-checkbox [(ngModel)]="subscribeSettings.deadlineNotifications" [binary]="true"
                         inputId="deadlineNotifications"></p-checkbox>
             <label style="margin-left: 10px;" for="deadlineNotifications">Присылать напоминания о дедлайнах</label>
