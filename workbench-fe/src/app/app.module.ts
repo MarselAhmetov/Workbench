@@ -34,6 +34,7 @@ import {AuthInterceptor} from "./auth-interceptor";
 import {GoogleIntegrationComponent} from "./pages/integration/google.integration.component";
 import {ProjectComponent} from "./pages/project/project.component";
 import {TaskComponent} from "./pages/task/task.component";
+import {TrelloIntegrationComponent} from "./pages/integration/trello.integration.component";
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {TaskComponent} from "./pages/task/task.component";
     GoogleIntegrationComponent,
     ProjectComponent,
     TaskComponent,
+    TrelloIntegrationComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -27,4 +27,5 @@ public class User extends LongIdBaseEntity {
     Role role;
     String email;
     Boolean isGoogleConnected;
+    String trelloToken;
 }

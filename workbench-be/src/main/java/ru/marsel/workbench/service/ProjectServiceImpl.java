@@ -15,6 +15,7 @@ import ru.marsel.workbench.security.AuthContext;
 import ru.marsel.workbench.service.interfaces.GoogleDriveService;
 import ru.marsel.workbench.service.interfaces.ProjectService;
 import ru.marsel.workbench.service.interfaces.RoadmapService;
+import ru.marsel.workbench.service.interfaces.TrelloService;
 import ru.model.workbench.model.ProjectCreationRequestDto;
 import ru.model.workbench.model.ProjectDto;
 
@@ -29,6 +30,7 @@ public class ProjectServiceImpl implements ProjectService {
     private final ProjectAttributeRepository projectAttributeRepository;
     private final GoogleDriveService googleDriveService;
     private final GoogleDriveDataRepository googleDriveDataRepository;
+    private final TrelloService trelloService;
 
     @Override
     @Transactional
@@ -42,6 +44,7 @@ public class ProjectServiceImpl implements ProjectService {
         if (user.getIsGoogleConnected()) {
             createGoogleDriveFolder(project);
         }
+        trelloService.createTrelloSettings(project);
         return projectMapper.toDto(project);
     }
 

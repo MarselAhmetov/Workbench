@@ -17,6 +17,7 @@ import ru.marsel.workbench.repository.GoogleDriveDataRepository;
 import ru.marsel.workbench.repository.TaskRepository;
 import ru.marsel.workbench.service.interfaces.GoogleDriveService;
 import ru.marsel.workbench.service.interfaces.TaskService;
+import ru.marsel.workbench.service.interfaces.TrelloService;
 import ru.model.workbench.model.TaskDto;
 import ru.model.workbench.model.TaskItemDto;
 
@@ -28,6 +29,7 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
     private final GoogleDriveDataRepository googleDriveDataRepository;
     private final TaskMapper taskMapper;
+    private final TrelloService trelloService;
 
     @Transactional
     @SneakyThrows
@@ -70,8 +72,10 @@ public class TaskServiceImpl implements TaskService {
             if (!forbidden && child.getStatus().equals(TaskStatus.LOCKED)) {
                 child.setStatus(TaskStatus.TODO);
                 taskRepository.save(child);
+                trelloService.createTask(child);
             }
         }
+        trelloService.moveTaskToDone(task);
         return taskRepository.save(task);
     }
 

@@ -22,4 +22,8 @@ export class SettingsComponent implements OnInit {
   public googleOauth2() : void {
     this.document.location.href = 'https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=122652047502-1r58lea3jrmore7bvfbglfcdb3rb2ple.apps.googleusercontent.com&scope=https://www.googleapis.com/auth/drive.file&state=qZoIdH4uaIttBB10qSfk9OU64TOsYYIiELFEDCAXmc0%3D&redirect_uri=http://localhost:4200/login/oauth2/code/google&access_type=offline';
   }
+
+  public linkTrello() : void {
+    this.document.location.href = 'https://trello.com/1/authorize?expiration=never&scope=read,write,account&response_type=token&name=Workbench&key=a0a5600a37e13f2d01d1b12a3e7ce624&redirect_uri=http://localhost:4200/login/oauth2/code/trello';
+  }
 }

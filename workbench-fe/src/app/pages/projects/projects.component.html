@@ -4,6 +4,7 @@
       <div *ngFor="let item of project$ | async" style="margin-right:30px">
         <s-project-card (click)="openProject(item.id)" [project]=item></s-project-card>
       </div>
+      <div style="width: 15rem; height: 18rem; background-color:#fff; border: 2px dashed; display: flex; justify-content: center; align-items: center; border-radius: 15px; color: #2176FF; font-size: 20px;">Создать проект</div>
     </div>
   </p-tabPanel>
   <p-tabPanel header="Завершенные">

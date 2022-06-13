@@ -10,6 +10,7 @@ import { NonAuthGuard } from "./shared/services/non-auth.guard";
 import {GoogleIntegrationComponent} from "./pages/integration/google.integration.component";
 import {ProjectComponent} from "./pages/project/project.component";
 import {TaskComponent} from "./pages/task/task.component";
+import {TrelloIntegrationComponent} from "./pages/integration/trello.integration.component";
 
 const routes: Routes = [
   {
@@ -50,6 +51,11 @@ const routes: Routes = [
   {
     path: 'project/:projectId/task/:taskId',
     component: TaskComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'login/oauth2/code/trello',
+    component: TrelloIntegrationComponent,
     canActivate: [AuthGuard],
   },
 ];

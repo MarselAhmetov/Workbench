@@ -33,6 +33,7 @@ public class Task extends LongIdBaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "roadmap_id")
     Roadmap roadmap;
+    String trelloCardId;
 
     public Task(TaskType type) {
         this.type = type;

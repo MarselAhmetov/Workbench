@@ -141,6 +141,23 @@ paths:
           description: OK
           content: {}
 
+  /api/integration/trello:
+    post:
+      tags:
+        - Integration
+      summary: getAccessTrelloApi
+      operationId: getAccessTrelloApi
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions/Integration.yml#/TrelloToken'
+      responses:
+        200:
+          description: OK
+          content: { }
+
   /api/task/template/download:
     get:
       tags:

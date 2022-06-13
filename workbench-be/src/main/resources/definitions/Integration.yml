@@ -3,3 +3,9 @@ GoogleDriveCode:
   properties:
     code:
       type: string
+
+TrelloToken:
+  type: object
+  properties:
+    token:
+      type: string
