@@ -41,10 +41,10 @@ export class ProjectComponent implements OnInit{
   }
 
   public compare(a: Task, b: Task) {
-      if ( a.status == 'LOCKED' ?  2 : a.status == 'TODO' ? 1 : 3 < (b.status == 'LOCKED' ?  2 : b.status == 'TODO' ? 1 : 3)){
+      if ( a.status == 'LOCKED' ?  3 : a.status == 'TODO' ? 1 : a.status == 'IN_PROGRESS' ? 2 : 4 < (b.status == 'LOCKED' ?  3 : b.status == 'TODO' ? 1 : b.status == 'IN_PROGRESS' ? 2 : 4)){
         return -1;
       }
-      if ( a.status == 'LOCKED' ?  2 : a.status == 'TODO' ? 1 : 3 > (b.status == 'LOCKED' ?  2 : b.status == 'TODO' ? 1 : 3)){
+      if ( a.status == 'LOCKED' ?  3 : a.status == 'TODO' ? 1 : a.status == 'IN_PROGRESS' ? 2 : 4 > (b.status == 'LOCKED' ?  3 : b.status == 'TODO' ? 1 : b.status == 'IN_PROGRESS' ? 2 : 4)){
         return 1;
       }
       return 0;
